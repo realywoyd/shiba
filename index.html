@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHIBA INU Game</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: url('https://i.imgur.com/W9YBec9.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .btn-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    .btn-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .tap-icon {
+      animation: bounce 0.3s ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .score-box {
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body class="text-white flex flex-col justify-between h-screen px-2 py-4">
+  <!-- Top Navigation -->
+  <div class="flex justify-between items-center w-full px-4">
+    <!-- Leaderboard Button -->
+    <button class="bg-blue-600 hover:bg-blue-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/2278/2278992.png" alt="Leaderboard" class="btn-icon">
+    </button>
+
+    <!-- Clans Button -->
+    <button class="bg-purple-600 hover:bg-purple-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/3126/3126617.png" alt="Clans" class="btn-icon">
+    </button>
+  </div>
+
+  <!-- Main Tap Area -->
+  <div class="flex flex-col items-center justify-center flex-grow">
+    <div id="score" class="score-box">Score: 0</div>
+    <button id="tapButton" class="focus:outline-none mt-4">
+      <img id="tapIcon" src="https://cryptologos.cc/logos/shiba-inu-shib-logo.png" 
+           alt="SHIBA INU" 
+           class="w-24 h-24 sm:w-32 sm:h-32 rounded-full shadow-lg tap-icon">
+    </button>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="grid grid-cols-3 gap-4 px-4">
+    <!-- Shop Button -->
+    <button class="bg-yellow-600 hover:bg-yellow-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/891/891462.png" alt="Shop" class="btn-icon">
+    </button>
+
+    <!-- Tasks Button -->
+    <button class="bg-green-600 hover:bg-green-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/843/843285.png" alt="Tasks" class="btn-icon">
+    </button>
+
+    <!-- Friends Button -->
+    <button class="bg-pink-600 hover:bg-pink-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png" alt="Friends" class="btn-icon">
+    </button>
+
+    <!-- Airdrop Button -->
+    <button class="bg-red-600 hover:bg-red-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/3179/3179068.png" alt="Airdrop" class="btn-icon">
+    </button>
+
+    <!-- Boosts Button -->
+    <button class="bg-indigo-600 hover:bg-indigo-700 btn-circle">
+      <img src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png" alt="Boosts" class="btn-icon">
+    </button>
+  </div>
+
+  <script>
+    let score = 0;
+    const scoreElement = document.getElementById('score');
+    const tapButton = document.getElementById('tapButton');
+    const tapIcon = document.getElementById('tapIcon');
+
+    // Handle tap button click
+    tapButton.addEventListener('click', () => {
+      score += 1;
+      scoreElement.textContent = `Score: ${score}`;
+
+      // Animate the tap icon
+      tapIcon.classList.remove('tap-icon');
+      void tapIcon.offsetWidth; // Trigger reflow to restart animation
+      tapIcon.classList.add('tap-icon');
+    });
+  </script>
+</body>
+</html>
